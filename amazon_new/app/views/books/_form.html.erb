@@ -1,0 +1,42 @@
+<%= form_with(model: book, local: true) do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author_id %>
+    <%# <%= form.text_field :author_id %>
+    <%
+    # form.collection_select(field_id, collection, value, label) 
+    # field_id = the field to populate with the id of the selectied item
+    # collection = array containing the objects to create the options from
+    # value = the attribute of the option object to return as the value of this option
+    # label = the attribute of the option object to display for this option
+    %>
+    <%= form.collection_select(:author_id, Author.all, :id, :name) %>
+  </div>
+
+  <%= link_to 'New Author', new_author_path %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

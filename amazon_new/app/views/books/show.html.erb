@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @book.image, width: 250, alt: @book.title, title: @book.title unless [nil, ''].include?(@book.image)  %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= link_to @book.author.name, @book.author %>
+</p>
+
+<%= link_to 'Edit', edit_book_path(@book) %> |
+<%= link_to 'Back', books_path %>

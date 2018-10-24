@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @author.name %>
+</p>
+
+<p>
+  <%= image_tag @author.image, width: 250, alt: @author.name, title: @author.name unless [nil, ''].include?(@author.image)  %>
+</p>
+
+<p>
+  <strong>Books:</strong>
+  <ul>
+  <% for book in @author.books %>
+    <li><%= link_to book.title, book %></li>
+  <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Add Book', new_book_path(:author_id => @author.id) %> |
+<%= link_to 'Edit', edit_author_path(@author) %> |
+<%= link_to 'Back', authors_path %>
